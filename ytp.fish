@@ -56,7 +56,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
     printf '%s' ' (v. ' (echo $APP_VERSION) ')' (set_color normal;)
     printf "\nA Fish shell script that lets you open a clipboarded URL\n"
     printf "to a YouTube video in 'mpv' media player, using applied\n"
-    printf "CLI options and/or corresponding export/config variables.\n"
+    printf "CLI options and/or config variables.\n"
     printf "\n"
     printf '%s' (set_color --bold) 'USAGE' (set_color normal;)
     printf "\n"
