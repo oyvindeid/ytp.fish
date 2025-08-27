@@ -2,7 +2,7 @@
 A Fish shell script that lets you open clipboarded URLs to YouTube videos in [mpv](https://mpv.io) media player, using applied CLI options and/or config variables.
 
 # Requirements
-- [fish](https://fishshell.com)
+- [Fish](https://fishshell.com)
 - [mpv](https://mpv.io)
 - [youtube-dl](https://github.com/ytdl-org/youtube-dl)
 - [GNU grep](https://www.gnu.org/software/grep)
