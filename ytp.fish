@@ -2,8 +2,8 @@ function ytp -d "Open a pasteboarded URL to a YouTube video in mpv player"
 
   set -g APP_NAME 'ytp'
   set -g APP_VERSION '0.1.0'
-  set -g APP_REQUIREMENTS 'fish (4.0.2),mpv (0.33.1),youtube-dl (2025.06.09),GNU grep (3.12),perl (5.34.3),GNU date (from GNU coreutils 9.5),macOS+pbpaste or an UNIX/Linux distribution using either X11+xclip or Wayland+wl-clipboard.'
-  set -g APP_AUTHOR 'Øyvind Eidhammer <oyvind.eidhammer@gmail.com>'
+  set -g APP_REQUIREMENTS 'fish (4.0.2),mpv (0.33.1),youtube-dl (2025.06.09),GNU grep (3.12),perl (5.34.3),GNU date (from GNU coreutils 9.5),macOS+pbpaste or a UNIX/Linux distribution using either X11+xclip or Wayland+wl-clipboard.'
+  set -g APP_AUTHOR 'Øyvind Eidhammer'
   set -g APP_C_NAME 'Øyvind Eidhammer'
   set -g APP_C_YEAR '2025'
   set -g APP_LICENSE_TYPE 'Simplified BSD License (BSD-2-Clause)'
@@ -90,8 +90,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
     printf '%13s # Audio|video driver/output (see '
     printf '%s' (set_color --bold) (echo $APP_NAME) ' --drivers' (set_color normal;) ')'
     printf "\n%3s"
-    printf '%s' '[' (set_color --bold) '--af|vf FILTERS' (set_color normal;) ']'
-    printf "%12s # 'mpv' audio|video filter(s,) (see "
+    printf '%s' '[' (set_color --bold) '--af|vf FILTERS|none' (set_color normal;) ']'
+    printf "%7s # 'mpv' audio|video filter(s,) (see "
     printf '%s' (set_color --bold) (echo $APP_NAME) ' --a|vfilters' (set_color normal;) ')'
     printf "\n%3s"
     printf '%s' '[' (set_color --bold) '--af|vf-extra FILTERS' (set_color normal;) ']'
@@ -153,7 +153,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
     printf '%s' '[' (set_color --bold) '--valid-domains' (set_color normal;) ']'
     printf "%12s # See a list of connectable domains and exit"
     printf "\n"
-    printf "%1s YOUTUBE-URL-IN-CLIPBOARD\n"
+    printf "%1s YOUTUBE-VIDEO-URL-FROM-CLIPBOARD\n"
     printf "\n"
     printf '%s' (set_color --bold) 'CONFIG VARIABLES' (set_color normal;)
     printf "\n"
@@ -222,7 +222,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
     printf "\n"
     printf '%s' (set_color --bold) 'REQUIREMENTS' (set_color normal;)
     printf "\n"
-    echo -e (string replace ',perl' ',\nperl' $APP_REQUIREMENTS | string replace 'or an ' 'or an\n' | string replace -r -a ',' ', ')
+    echo -e (string replace ',perl' ',\nperl' $APP_REQUIREMENTS | string replace 'or a ' 'or a\n' | string replace -r -a ',' ', ')
     printf "\n"
     printf '%s' (set_color --bold) 'AUTHOR' (set_color normal;)
     printf "\n"
@@ -254,14 +254,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
   end
 
   if set -ql _flag_afilters
-    printf '%s' 'Audio filters (' (set_color --bold) (echo $APP_NAME) ' --af FILTER1[=PARAM1:PARAM2,..],FILTER2[=PARAM1:PARAM2,..],..' (set_color normal;) '):'
+    printf '%s' 'Audio filters (' (set_color --bold) (echo $APP_NAME) ' --af none|FILTER1[=PARAM1:PARAM2,..],FILTER2[=PARAM1:PARAM2,..],..' (set_color normal;) '):'
     printf "\n"
     printf "%s\n" (mpv --af=help | perl -ne 'print if $. >= 2' | perl -nle 'print if not /^Get help.+$/ .. /^\s*$/' )
     return 0
   end
 
   if set -ql _flag_vfilters
-    printf '%s' 'Video filters (' (set_color --bold) (echo $APP_NAME) ' --vf FILTER1[=PARAM1:PARAM2,..],FILTER2[=PARAM1:PARAM2,..],..' (set_color normal;) '):'
+    printf '%s' 'Video filters (' (set_color --bold) (echo $APP_NAME) ' --vf none|FILTER1[=PARAM1:PARAM2,..],FILTER2[=PARAM1:PARAM2,..],..' (set_color normal;) '):'
     printf "\n"
     printf "%s\n" (mpv --vf=help | perl -ne 'print if $. >= 2' | perl -nle 'print if not /^Get help.+$/ .. /^\s*$/' )
     return 0
