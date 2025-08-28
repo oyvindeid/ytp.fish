@@ -840,7 +840,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
   set -g UPLOADDATE (echo $META | grep -o '"upload_date": "[^"]*"' | perl -pe 's/"upload_date": //g;' | perl -pe 's/["]//g;')
   set -g DURATION (echo $META | grep -o '"duration_string": "[^"]*"' | perl -pe 's/"duration_string": //g;' | perl -pe 's/["]//g;')
   set -g CHANNEL (echo $META | grep -o '"channel": "[^"]*"' | perl -pe 's/"channel": //g;' | perl -pe 's/["]//g;')
-  set -g UPLDATE (date --date="$UPLOADDATE" "+%m-%b-%Y" | string replace -r '([a-z])' '\U$0')
+  set -g UPLDATE (date --date="$UPLOADDATE" "+%d-%b-%Y" | string replace -r '([a-z])' '\U$0')
   set -g VIDEOTEXT "$TITLE [Dur $DURATION Pub $UPLDATE]"
   set -g URLTEXT "  * $URL"
   set -g CHANNELTEXT "  * $CHANNEL"
